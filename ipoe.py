@@ -59,12 +59,12 @@ def createConf(basicFile, configFile, sattingsArray):
     basFile.close()
     confFile.close()
 
-createConf('basic/basic.txt','config.txt', getSattings('sattings.ini'))
 def createArchive(configFile, sattingsArray):
     confFile = open (configFile, 'r')
-    archiveFile=open('archive/'+sattingsArray[0]+'.txt','w')
+    archiveFile=open('archive/'+sattingsArray[0].upper()+'.txt','w')
     archiveFile.writelines((confFile.readlines()))
     archiveFile.close()
     confFile.close()
 
+createConf('basic/basic.txt','config.txt', getSattings('sattings.ini'))
 createArchive('config.txt', getSattings('sattings.ini'))

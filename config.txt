@@ -6,7 +6,7 @@ interface gigabitEthernet0/0/0.123303803
  qos-profile "QP-CORP-NOPPPOE"
  svlan id 1233 3803
  svlan ethertype 8100
- ip description CORP_SMOLOVSKY_IPOE
+ ip description CORP_MELNITSA_IPOE
  ip unnumbered loopback 5
  ip proxy-arp unrestricted
  no ip redirects
