@@ -18,6 +18,8 @@ interface gigabitEthernet0/0/0.123303803
 ***********************************
 #Добавление маршрута на Juniper#
 ip route 109.194.0.177  255.255.255.255 GigabitEthernet0/0/0.123303803
+ip route 109.194.0.178  255.255.255.255 GigabitEthernet0/0/0.123303803
+ip route 109.194.0.178  255.255.255.255 GigabitEthernet0/0/0.123303803
 ***********************************
 #Добавление vlan на порт Huawei#
 port vlan-stacking vlan 3803 stack-vlan 1233

@@ -19,9 +19,14 @@ def getSattings(setFile):
         while line[len(line)-1] == '\n' or line[len(line)-1] == ' ':
             line=line[:-1]
         setLine=line.split(':')[1]
-        settingsArray.append(setLine)
+        if len(setLine.split(','))>1:
+            for i in range(0,len(setLine.split(','))):
+                settingsArray.append(setLine.split(',')[i])
+        else:
+            settingsArray.append(setLine)
     settingsFile.close()
     return settingsArray
+print getSattings('sattings.ini');
 
 def createConf(basicFile, configFile, sattingsArray):
     basFile = open (basicFile, 'r')
@@ -40,7 +45,13 @@ def createConf(basicFile, configFile, sattingsArray):
             line=line+' CORP_'+sattingsArray[0].upper()+'_IPOE'
         if line==' ip policy-parameter reference-rate INTERNET-RATE-NOPPPOE':
             line=line+' '+str(int(sattingsArray[1])*1024*1024)
-        if line=='ip route *.*.*.*  255.255.255.255 GigabitEthernet0/0/0.*':
+        if (line=='ip route *.*.*.*  255.255.255.255 GigabitEthernet0/0/0.*') and (len(sattingsArray)>5):
+            lineArray=line.split('*.*.*.*')
+            lineArray[1]=lineArray[1][:-1]
+            for i in range(4,len(sattingsArray)):
+                line=lineArray[0]+sattingsArray[i]+lineArray[1]+sattingsArray[3]+'0'+sattingsArray[2]
+                confFile.write(line+'\n')
+        if (line=='ip route *.*.*.*  255.255.255.255 GigabitEthernet0/0/0.*'):
             lineArray=line.split('*.*.*.*')
             lineArray[1]=lineArray[1][:-1]
             line=lineArray[0]+sattingsArray[4]+lineArray[1]+sattingsArray[3]+'0'+sattingsArray[2]
