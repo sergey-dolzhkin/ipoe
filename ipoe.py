@@ -50,6 +50,8 @@ def createConf(basicFile, configFile, sattingsArray):
             lineArray[1]=lineArray[1][:-1]
             for i in range(4,len(sattingsArray)):
                 line=lineArray[0]+sattingsArray[i]+lineArray[1]+sattingsArray[3]+'0'+sattingsArray[2]
+                if i==len(sattingsArray)-1:
+                    break
                 confFile.write(line+'\n')
         if (line=='ip route *.*.*.*  255.255.255.255 GigabitEthernet0/0/0.*'):
             lineArray=line.split('*.*.*.*')
